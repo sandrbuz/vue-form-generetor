@@ -2,26 +2,35 @@
   <form @submit.prevent="onSubmit" @reset.prevent="onReset" class="form-generator">
     <template v-for="field in fields" :key="field.name">
       <slot :name="`field-${field.name}`" :field="field" :modelValue="modelValue[field.name]">
-        <div class="form-group">
+        <div class="form-group" v-if="field.type !== 'checkbox'">
           <label :for="field.name">{{ field.label }}</label>
           <component
             :is="getComponent(field.type)"
             v-bind="field.attrs"
-            v-model="localModel[field.name]"
+            :value="modelValue[field.name]"
+            @input="updateField(field.name, $event.target.value)"
             :id="field.name"
-            :type="field.type === 'input' ? field.attrs?.type || 'text' : undefined"
+            :type="field.type === 'input' ? (field.attrs?.type || 'text') : undefined"
             :options="field.options"
-            :checked="field.type === 'checkbox' ? localModel[field.name] : undefined"
             class="form-control"
           >
-            <template
-              v-if="field.type === 'select'"
-              v-for="option in field.options"
-              :key="option.value"
-            >
+            <template v-if="field.type === 'select'" v-for="option in field.options" :key="option.value">
               <option :value="option.value">{{ option.label }}</option>
             </template>
           </component>
+        </div>
+        <div class="form-group checkbox-group" v-else>
+          <label :for="field.name" class="checkbox-label">
+            <input
+              type="checkbox"
+              v-bind="field.attrs"
+              :checked="modelValue[field.name]"
+              @change="updateField(field.name, $event.target.checked)"
+              :id="field.name"
+              class="form-checkbox"
+            />
+            {{ field.label }}
+          </label>
         </div>
       </slot>
     </template>
@@ -35,7 +44,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineProps, defineEmits, reactive, watch } from "vue";
+import { defineProps, defineEmits } from 'vue';
 
 interface FieldOption {
   label: string;
@@ -45,7 +54,7 @@ interface FieldOption {
 interface Field {
   name: string;
   label: string;
-  type: "input" | "select" | "checkbox" | "textarea";
+  type: 'input' | 'select' | 'checkbox' | 'textarea';
   options?: FieldOption[];
   attrs?: Record<string, any>;
 }
@@ -55,49 +64,40 @@ const props = defineProps<{
   modelValue: Record<string, any>;
 }>();
 
-const emit = defineEmits(["update:modelValue", "submit", "reset"]);
+const emit = defineEmits(['update:modelValue', 'submit', 'reset']);
 
-const localModel = reactive({ ...props.modelValue });
-
-watch(
-  () => props.modelValue,
-  (newVal) => {
-    Object.assign(localModel, newVal);
-  }
-);
-
-watch(
-  localModel,
-  (val) => {
-    emit("update:modelValue", { ...val });
-  },
-  { deep: true }
-);
+function updateField(fieldName: string, value: any) {
+  const updated = { ...props.modelValue };
+  updated[fieldName] = value;
+  emit('update:modelValue', updated);
+}
 
 function getComponent(type: string) {
   switch (type) {
-    case "input":
-      return "input";
-    case "select":
-      return "select";
-    case "checkbox":
-      return "input";
-    case "textarea":
-      return "textarea";
+    case 'input':
+      return 'input';
+    case 'select':
+      return 'select';
+    case 'checkbox':
+      return 'input';
+    case 'textarea':
+      return 'textarea';
     default:
-      return "input";
+      return 'input';
   }
 }
 
 function onSubmit() {
-  emit("submit", { ...localModel });
+  emit('submit', { ...props.modelValue });
 }
 
 function onReset() {
-  Object.keys(localModel).forEach((key) => {
-    localModel[key] = "";
+  const resetObj: Record<string, any> = {};
+  props.fields.forEach((field) => {
+    resetObj[field.name] = typeof props.modelValue[field.name] === 'boolean' ? false : '';
   });
-  emit("reset");
+  emit('update:modelValue', resetObj);
+  emit('reset');
 }
 </script>
 
@@ -116,6 +116,22 @@ function onReset() {
       padding: 0.5rem;
       border: 1px solid #ccc;
       border-radius: 4px;
+    }
+  }
+  .checkbox-group {
+    display: flex;
+    align-items: center;
+    label.checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0;
+      font-weight: normal;
+    }
+    .form-checkbox {
+      width: 18px;
+      height: 18px;
+      margin-right: 0.5rem;
     }
   }
   .form-actions {

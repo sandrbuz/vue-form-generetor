@@ -1,8 +1,12 @@
 <script setup lang="ts">
-import { RouterView } from "vue-router";
+import { RouterView, RouterLink } from "vue-router";
 </script>
 
 <template>
+  <nav style="text-align: center; margin-bottom: 2rem;">
+    <RouterLink to="/">Форма регистрации</RouterLink> 
+    <RouterLink to="/about">Анкета</RouterLink>
+  </nav>
   <RouterView />
 </template>
 
