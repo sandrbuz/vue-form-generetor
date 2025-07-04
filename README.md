@@ -120,7 +120,7 @@ const fields: Field[] = [
 ## 🧪 Testing
 
 - **20 tests** covering all application aspects
-- **4 testing levels**: Unit, Composables, Components, E2E
+- **4 testing levels**: Unit, Composables,, Components, E2E
 - **Vitest + @vue/test-utils** for modern Vue 3 testing
 
 ```bash
