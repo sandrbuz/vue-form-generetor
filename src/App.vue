@@ -3,28 +3,86 @@ import { RouterView, RouterLink } from "vue-router";
 </script>
 
 <template>
-  <nav style="text-align: center; margin-bottom: 2rem;">
-    <RouterLink to="/">Форма регистрации</RouterLink> 
-    <RouterLink to="/survey">Анкета</RouterLink>
-  </nav>
-  <RouterView />
+  <div class="app-container">
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <RouterLink to="/" class="nav-link">Форма регистрации</RouterLink> 
+        <RouterLink to="/survey" class="nav-link">Анкета</RouterLink>
+      </nav>
+      
+      <main class="main-content">
+        <RouterView />
+      </main>
+    </div>
+  </div>
 </template>
 
 <style scoped>
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid #ccc;
+.app-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.content-wrapper {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.navigation {
+  width: 100%;
+  margin-bottom: 2rem;
+  padding: 0;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  gap: 0;
+  overflow: hidden;
+}
+
+.nav-link {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
   text-decoration: none;
   color: #42b983;
+  border-right: 1px solid #eee;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  text-align: center;
 }
 
-nav a:first-of-type {
-  border: 0;
+.nav-link:last-child {
+  border-right: none;
 }
 
-nav a.router-link-exact-active {
-  color: #333;
-  font-weight: bold;
+.nav-link:hover {
+  background: #f8f9fa;
+  color: #369870;
+}
+
+.nav-link.router-link-exact-active {
+  background: #42b983;
+  color: white;
+}
+
+.main-content {
+  width: 100%;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 </style>

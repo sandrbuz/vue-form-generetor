@@ -72,18 +72,43 @@ function getComponent(type: string) {
 
 <style lang="scss" scoped>
 .form-group {
-  margin-bottom: 1rem;
+  margin-bottom: 0;
   
   label {
     display: block;
     margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #333;
+    font-size: 0.95rem;
   }
   
   .form-control {
     width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 0.75rem;
+    border: 2px solid #e1e5e9;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+    box-sizing: border-box;
+    
+    &:focus {
+      outline: none;
+      border-color: #42b983;
+      box-shadow: 0 0 0 3px rgba(66, 185, 131, 0.1);
+    }
+    
+    &::placeholder {
+      color: #999;
+    }
+  }
+  
+  select.form-control {
+    cursor: pointer;
+  }
+  
+  textarea.form-control {
+    resize: vertical;
+    min-height: 80px;
   }
 }
 
@@ -94,15 +119,20 @@ function getComponent(type: string) {
   label.checkbox-label {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.75rem;
     margin-bottom: 0;
-    font-weight: normal;
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+    user-select: none;
   }
   
   .form-checkbox {
-    width: 18px;
-    height: 18px;
-    margin-right: 0.5rem;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    cursor: pointer;
+    accent-color: #42b983;
   }
 }
 </style> 

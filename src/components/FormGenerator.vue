@@ -54,7 +54,10 @@ function onReset() {
 
 <style lang="scss" scoped>
 .form-generator {
-  max-width: 400px;
-  margin: 0 auto;
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 </style>

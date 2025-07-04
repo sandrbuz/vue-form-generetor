@@ -1,11 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
 body {
   font-family: 'Segoe UI', Arial, sans-serif;
   background: #f4f6fa;
   color: #222;
-  margin: 0;
-  padding: 0;
 }
 
+#app {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.form-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-title {
+  text-align: center;
+  margin: 0 0 2rem 0;
+  color: #333;
+  font-size: 1.75rem;
+  font-weight: 600;
+}
 
 .btn {
   padding: 0.5rem 1rem;

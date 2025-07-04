@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1>Регистрация пользователя</h1>
+  <div class="form-container">
+    <h1 class="form-title">Регистрация пользователя</h1>
     <FormGenerator
       v-model="formData"
       :fields="fields"
@@ -67,10 +67,4 @@ function onSubmit(data: FormData) {
 function onReset() {
   alert('Форма сброшена');
 }
-</script>
-
-<style scoped>
-h1 {
-  margin-bottom: 1rem;
-}
-</style> 
+</script> 
