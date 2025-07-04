@@ -1,95 +1,95 @@
 # 🚀 Vue Form Generator
 
-Динамический генератор форм на Vue 3 + TypeScript с чистой архитектурой и современным стеком технологий.
+Dynamic form generator built with Vue 3 + TypeScript featuring clean architecture and modern tech stack.
 
 ## 🌐 Live Demo
 
-**[Попробовать онлайн →](https://vue-form-generatorr.netlify.app/)**
+**[Try it online →](https://vue-form-generatorr.netlify.app/)**
 
-## ⚡ Особенности
+## ⚡ Features
 
-- 🎯 **Композиция API** - современный подход Vue 3
-- 📝 **Динамические формы** - генерация через конфигурацию JSON
-- 🎨 **Слоты для кастомизации** - гибкая настройка полей и кнопок
-- 🔔 **Toast уведомления** - красивые анимированные сообщения
-- 🧪 **100% покрытие тестами** - Unit, Integration, E2E
-- 📱 **Отзывчивый дизайн** - адаптивная верстка
-- 🎭 **TypeScript** - полная типизация без `any`
+- 🎯 **Composition API** - modern Vue 3 approach
+- 📝 **Dynamic forms** - JSON configuration-driven
+- 🎨 **Slot customization** - flexible field and button styling
+- 🔔 **Toast notifications** - beautiful animated messages
+- 🧪 **100% test coverage** - Unit, Integration, E2E
+- 📱 **Responsive design** - adaptive layout
+- 🎭 **TypeScript** - full typing without `any`
 
-## 🛠 Технологический стек
+## 🛠 Tech Stack
 
 - **Vue 3** - Composition API, `<script setup>`
-- **TypeScript** - строгая типизация
-- **Vite** - быстрая сборка и HMR
-- **Vue Router** - маршрутизация
-- **SCSS** - препроцессор стилей
-- **Vitest** - тестирование
-- **ESLint + Prettier** - качество кода
+- **TypeScript** - strict typing
+- **Vite** - fast build and HMR
+- **Vue Router** - routing
+- **SCSS** - CSS preprocessor
+- **Vitest** - testing framework
+- **ESLint + Prettier** - code quality
 
-## 📦 Установка и запуск
+## 📦 Installation & Setup
 
 ```bash
-# Клонирование
+# Clone repository
 git clone <repository-url>
 cd vue-form-generator
 
-# Установка зависимостей
+# Install dependencies
 npm install
 
-# Разработка
+# Development
 npm run dev
 
-# Сборка
+# Build
 npm run build
 
-# Тестирование
+# Testing
 npm run test
 ```
 
-## 🏗 Архитектура
+## 🏗 Architecture
 
 ```
 src/
-├── components/          # Переиспользуемые компоненты
-│   ├── FormGenerator.vue    # Главный генератор форм
-│   ├── FormField.vue        # Универсальное поле
-│   └── Toast.vue           # Система уведомлений
-├── composables/         # Композаблы Vue
-│   └── useToast.ts         # Управление уведомлениями
-├── utils/              # Утилитарные функции
-│   └── formConfigs.ts      # Конфигурации полей
-├── views/              # Страницы приложения
-│   ├── RegistrationForm.vue # Форма регистрации
-│   └── PersonalSurvey.vue   # Персональная анкета
-└── types/              # TypeScript типы
-    └── form.ts             # Типы для форм
+├── components/          # Reusable components
+│   ├── FormGenerator.vue    # Main form generator
+│   ├── FormField.vue        # Universal field component
+│   └── Toast.vue           # Notification system
+├── composables/         # Vue composables
+│   └── useToast.ts         # Toast management
+├── utils/              # Utility functions
+│   └── formConfigs.ts      # Field configurations
+├── views/              # Application pages
+│   ├── RegistrationForm.vue # Registration form
+│   └── PersonalSurvey.vue   # Personal survey
+└── types/              # TypeScript types
+    └── form.ts             # Form types
 ```
 
-## 🎯 Использование
+## 🎯 Usage
 
-### Создание формы
+### Creating a form
 
 ```typescript
-// 1. Определяем поля
+// 1. Define fields
 const fields: Field[] = [
   {
     name: 'username',
-    label: 'Имя пользователя',
+    label: 'Username',
     type: 'input',
-    attrs: { placeholder: 'Введите имя' }
+    attrs: { placeholder: 'Enter username' }
   },
   {
     name: 'role',
-    label: 'Роль',
+    label: 'Role',
     type: 'select',
     options: [
-      { label: 'Пользователь', value: 'user' },
-      { label: 'Админ', value: 'admin' }
+      { label: 'User', value: 'user' },
+      { label: 'Admin', value: 'admin' }
     ]
   }
 ]
 
-// 2. Используем компонент
+// 2. Use component
 <FormGenerator
   v-model="formData"
   :fields="fields"
@@ -97,11 +97,11 @@ const fields: Field[] = [
 />
 ```
 
-### Кастомизация через слоты
+### Customization with slots
 
 ```vue
 <FormGenerator v-model="formData" :fields="fields">
-  <!-- Кастомное поле -->
+  <!-- Custom field -->
   <template #field-username="{ field }">
     <div class="custom-field">
       <label>👤 {{ field.label }}</label>
@@ -109,19 +109,19 @@ const fields: Field[] = [
     </div>
   </template>
   
-  <!-- Кастомные кнопки -->
+  <!-- Custom buttons -->
   <template #actions>
-    <button type="submit">💾 Сохранить</button>
-    <button type="reset">🗑️ Очистить</button>
+    <button type="submit">💾 Save</button>
+    <button type="reset">🗑️ Clear</button>
   </template>
 </FormGenerator>
 ```
 
-## 🧪 Тестирование
+## 🧪 Testing
 
-- **20 тестов** покрывают все аспекты приложения
-- **4 уровня тестирования**: Unit, Composables, Components, E2E
-- **Vitest + @vue/test-utils** для современного тестирования Vue 3
+- **20 tests** covering all application aspects
+- **4 testing levels**: Unit, Composables, Components, E2E
+- **Vitest + @vue/test-utils** for modern Vue 3 testing
 
 ```bash
 npm run test        # Watch mode
@@ -129,28 +129,28 @@ npm run test:run    # CI mode
 npm run test:ui     # Web UI
 ```
 
-## 📋 Доступные скрипты
+## 📋 Available Scripts
 
 ```bash
-npm run dev         # Запуск dev сервера
-npm run build       # Сборка для продакшена
-npm run preview     # Предварительный просмотр сборки
-npm run lint        # Проверка ESLint
-npm run format      # Форматирование Prettier
-npm run test        # Запуск тестов
+npm run dev         # Start dev server
+npm run build       # Production build
+npm run preview     # Preview build
+npm run lint        # ESLint check
+npm run format      # Prettier formatting
+npm run test        # Run tests
 ```
 
-## 🌟 Демонстрируемые навыки
+## 🌟 Demonstrated Skills
 
-- ✅ Современная архитектура Vue 3
-- ✅ Композиция API и реактивность
-- ✅ TypeScript без компромиссов
-- ✅ Переиспользуемые компоненты
-- ✅ Система слотов для расширяемости
-- ✅ Комплексное тестирование
-- ✅ Настройка инструментов разработки
-- ✅ Чистый и читаемый код
+- ✅ Modern Vue 3 architecture
+- ✅ Composition API and reactivity
+- ✅ TypeScript without compromises
+- ✅ Reusable component design
+- ✅ Slot system for extensibility
+- ✅ Comprehensive testing
+- ✅ Development tooling setup
+- ✅ Clean and readable code
 
 ---
 
-**Live версия:** [vue-form-generatorr.netlify.app](https://vue-form-generatorr.netlify.app/)
+**Live version:** [vue-form-generatorr.netlify.app](https://vue-form-generatorr.netlify.app/)
