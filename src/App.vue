@@ -1,5 +1,9 @@
 <script setup lang="ts">
 import { RouterView, RouterLink } from 'vue-router';
+import Toast from '@/components/Toast.vue';
+import { useToast } from '@/composables/useToast';
+
+const { toasts, removeToast } = useToast();
 </script>
 
 <template>
@@ -13,6 +17,19 @@ import { RouterView, RouterLink } from 'vue-router';
       <main class="main-content">
         <RouterView />
       </main>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container">
+      <Toast
+        v-for="toast in toasts"
+        :key="toast.id"
+        :title="toast.title"
+        :message="toast.message"
+        :type="toast.type"
+        :duration="toast.duration"
+        @close="removeToast(toast.id)"
+      />
     </div>
   </div>
 </template>
@@ -84,5 +101,20 @@ import { RouterView, RouterLink } from 'vue-router';
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+}
+
+.toast-container {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  pointer-events: none;
+}
+
+.toast-container > * {
+  pointer-events: all;
 }
 </style>

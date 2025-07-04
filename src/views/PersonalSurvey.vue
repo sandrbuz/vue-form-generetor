@@ -9,16 +9,19 @@
 import { ref } from 'vue';
 import FormGenerator from '@/components/FormGenerator.vue';
 import { personalSurveyFields, createFormData } from '@/utils/formConfigs';
+import { useToast } from '@/composables/useToast';
 import type { FormData } from '@/types/form';
 
 const fields = personalSurveyFields;
 const formData = ref<FormData>(createFormData(fields));
+const { showToast } = useToast();
 
 function onSubmit(data: FormData) {
-  alert('Данные отправлены!\n' + JSON.stringify(data, null, 2));
+  showToast('Анкета успешно отправлена!', 'success', 'Данные в консоли (F12)');
+  console.log('Данные анкеты:', data);
 }
 
 function onReset() {
-  alert('Анкета очищена');
+  showToast('Анкета очищена', 'info');
 }
 </script>

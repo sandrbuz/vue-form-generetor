@@ -30,17 +30,20 @@
 import { ref } from 'vue';
 import FormGenerator from '@/components/FormGenerator.vue';
 import { registrationFormFields, createFormData } from '@/utils/formConfigs';
+import { useToast } from '@/composables/useToast';
 import type { FormData } from '@/types/form';
 
 const fields = registrationFormFields;
 const formData = ref<FormData>(createFormData(fields));
+const { showToast } = useToast();
 
 function onSubmit(data: FormData) {
-  alert('Сохранено!\n' + JSON.stringify(data, null, 2));
+  showToast('Регистрация прошла успешно!', 'success', 'Данные в консоли (F12)');
+  console.log('Данные регистрации:', data);
 }
 
 function onReset() {
-  alert('Форма сброшена');
+  showToast('Форма очищена', 'info');
 }
 </script>
 
