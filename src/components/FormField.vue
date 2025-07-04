@@ -7,7 +7,7 @@
       :value="modelValue"
       @input="handleInput"
       :id="field.name"
-      :type="field.type === 'input' ? (field.attrs?.type || 'text') : undefined"
+      :type="field.type === 'input' ? field.attrs?.type || 'text' : undefined"
       class="form-control"
     >
       <template v-for="option in field.options" :key="option.value">
@@ -73,7 +73,7 @@ function getComponent(type: string) {
 <style lang="scss" scoped>
 .form-group {
   margin-bottom: 0;
-  
+
   label {
     display: block;
     margin-bottom: 0.5rem;
@@ -81,7 +81,7 @@ function getComponent(type: string) {
     color: #333;
     font-size: 0.95rem;
   }
-  
+
   .form-control {
     width: 100%;
     padding: 0.75rem;
@@ -90,22 +90,22 @@ function getComponent(type: string) {
     font-size: 1rem;
     transition: border-color 0.2s ease;
     box-sizing: border-box;
-    
+
     &:focus {
       outline: none;
       border-color: #42b983;
       box-shadow: 0 0 0 3px rgba(66, 185, 131, 0.1);
     }
-    
+
     &::placeholder {
       color: #999;
     }
   }
-  
+
   select.form-control {
     cursor: pointer;
   }
-  
+
   textarea.form-control {
     resize: vertical;
     min-height: 80px;
@@ -115,7 +115,7 @@ function getComponent(type: string) {
 .checkbox-group {
   display: flex;
   align-items: center;
-  
+
   label.checkbox-label {
     display: flex;
     align-items: center;
@@ -126,7 +126,7 @@ function getComponent(type: string) {
     cursor: pointer;
     user-select: none;
   }
-  
+
   .form-checkbox {
     width: 20px;
     height: 20px;
@@ -135,4 +135,4 @@ function getComponent(type: string) {
     accent-color: #42b983;
   }
 }
-</style> 
+</style>

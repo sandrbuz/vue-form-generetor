@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { RouterView, RouterLink } from "vue-router";
+import { RouterView, RouterLink } from 'vue-router';
 </script>
 
 <template>
   <div class="app-container">
     <div class="content-wrapper">
       <nav class="navigation">
-        <RouterLink to="/" class="nav-link">Форма регистрации</RouterLink> 
+        <RouterLink to="/" class="nav-link">Форма регистрации</RouterLink>
         <RouterLink to="/survey" class="nav-link">Анкета</RouterLink>
       </nav>
-      
+
       <main class="main-content">
         <RouterView />
       </main>

@@ -5,7 +5,7 @@
         <FormField
           :field="field"
           :model-value="modelValue[field.name]"
-          @update:model-value="(value) => updateField(field.name, value)"
+          @update:model-value="value => updateField(field.name, value)"
         />
       </slot>
     </template>
@@ -44,7 +44,7 @@ function onSubmit() {
 
 function onReset() {
   const resetObj: FormData = {};
-  props.fields.forEach((field) => {
+  props.fields.forEach(field => {
     resetObj[field.name] = typeof props.modelValue[field.name] === 'boolean' ? false : '';
   });
   emit('update:modelValue', resetObj);

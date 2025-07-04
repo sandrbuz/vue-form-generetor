@@ -1,12 +1,7 @@
 <template>
   <div class="form-container">
     <h1 class="form-title">Регистрация пользователя</h1>
-    <FormGenerator
-      v-model="formData"
-      :fields="fields"
-      @submit="onSubmit"
-      @reset="onReset"
-    >
+    <FormGenerator v-model="formData" :fields="fields" @submit="onSubmit" @reset="onReset">
       <template #field-username="{ field }">
         <div class="custom-field">
           <label :for="field.name" class="custom-label">
@@ -23,12 +18,8 @@
 
       <template #actions>
         <div class="custom-actions">
-          <button type="submit" class="btn btn-primary">
-            💾 Зарегистрироваться
-          </button>
-          <button type="reset" class="btn btn-secondary">
-            🗑️ Очистить форму
-          </button>
+          <button type="submit" class="btn btn-primary">💾 Зарегистрироваться</button>
+          <button type="reset" class="btn btn-secondary">🗑️ Очистить форму</button>
         </div>
       </template>
     </FormGenerator>
@@ -74,14 +65,14 @@ function onReset() {
   font-size: 1rem;
   background: linear-gradient(135deg, #f8faff 0%, #f1f5ff 100%);
   transition: all 0.3s ease;
-  
+
   &:focus {
     outline: none;
     border-color: #4f46e5;
     box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
     transform: translateY(-2px);
   }
-  
+
   &::placeholder {
     color: #a5b4fc;
   }
@@ -92,4 +83,4 @@ function onReset() {
   gap: 1rem;
   justify-content: center;
 }
-</style> 
+</style>

@@ -17,7 +17,7 @@
 interface Field {
   name: string;
   label: string;
-  type: "input" | "select" | "checkbox" | "textarea";
+  type: 'input' | 'select' | 'checkbox' | 'textarea';
   options?: FieldOption[];
   attrs?: Record<string, unknown>;
 }
@@ -54,24 +54,19 @@ interface Field {
 
 ```vue
 <template>
-  <FormGenerator
-    v-model="formData"
-    :fields="fields"
-    @submit="onSubmit"
-    @reset="onReset"
-  />
+  <FormGenerator v-model="formData" :fields="fields" @submit="onSubmit" @reset="onReset" />
 </template>
 
 <script setup>
-import { ref } from "vue";
-import FormGenerator from "@/components/FormGenerator.vue";
-import { registrationFormFields, createFormData } from "@/utils/formConfigs";
+import { ref } from 'vue';
+import FormGenerator from '@/components/FormGenerator.vue';
+import { registrationFormFields, createFormData } from '@/utils/formConfigs';
 
 const fields = registrationFormFields;
 const formData = ref(createFormData(fields));
 
-const onSubmit = (data) => console.log("Submitted:", data);
-const onReset = () => console.log("Form reset");
+const onSubmit = data => console.log('Submitted:', data);
+const onReset = () => console.log('Form reset');
 </script>
 ```
 

@@ -1,12 +1,7 @@
 <template>
   <div class="form-container">
     <h1 class="form-title">Персональная анкета</h1>
-    <FormGenerator
-      v-model="formData"
-      :fields="fields"
-      @submit="onSubmit"
-      @reset="onReset"
-    />
+    <FormGenerator v-model="formData" :fields="fields" @submit="onSubmit" @reset="onReset" />
   </div>
 </template>
 
@@ -26,4 +21,4 @@ function onSubmit(data: FormData) {
 function onReset() {
   alert('Анкета очищена');
 }
-</script> 
+</script>

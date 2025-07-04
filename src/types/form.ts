@@ -6,7 +6,7 @@ export interface FieldOption {
 export interface Field {
   name: string;
   label: string;
-  type: "input" | "select" | "checkbox" | "textarea";
+  type: 'input' | 'select' | 'checkbox' | 'textarea';
   options?: FieldOption[];
   attrs?: Record<string, unknown>;
 }
