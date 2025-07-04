@@ -12,45 +12,47 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue';
-import FormGenerator from '../components/FormGenerator.vue';
+import FormGenerator from '@/components/FormGenerator.vue';
+import type { Field, FormData } from '@/types/form';
 
-const fields = [
+const fields: Field[] = [
   {
     name: 'city',
     label: 'Город',
-    type: 'input' as const,
+    type: 'input',
     attrs: { placeholder: 'Ваш город' },
   },
   {
     name: 'gender',
     label: 'Пол',
-    type: 'select' as const,
+    type: 'select',
     options: [
       { label: 'Мужской', value: 'male' },
       { label: 'Женский', value: 'female' },
+      { label: 'Не указывать', value: 'other' },
     ],
     attrs: {},
   },
   {
     name: 'agree',
     label: 'Согласен с условиями',
-    type: 'checkbox' as const,
+    type: 'checkbox',
     attrs: {},
   },
 ];
 
-const formData = ref({
+const formData = ref<FormData>({
   city: '',
   gender: '',
   agree: false,
 });
 
-function onSubmit(data: Record<string, unknown>) {
-  alert('Отправлено!\n' + JSON.stringify(data, null, 2));
+function onSubmit(data: FormData) {
+  alert('Данные отправлены!\n' + JSON.stringify(data, null, 2));
 }
 
 function onReset() {
-  alert('Форма очищена');
+  alert('Анкета очищена');
 }
 </script>
 
@@ -58,4 +60,4 @@ function onReset() {
 h1 {
   margin-bottom: 1rem;
 }
-</style>
+</style> 
